@@ -27,7 +27,7 @@ public class SplashActivity extends AwesomeSplash{
         configSplash.setRevealFlagY(Flags.REVEAL_BOTTOM); //or Flags.REVEAL_TOP
 
         // logo
-        configSplash.setLogoSplash(R.drawable.ic_whatshot_white_160dp); //or any other drawable
+        configSplash.setLogoSplash(R.drawable.ic_dribble); //or any other drawable
         configSplash.setAnimLogoSplashDuration(1500); //int ms
         configSplash.setAnimLogoSplashTechnique(Techniques.BounceInDown); //choose one form Techniques (ref: https://github.com/daimajia/AndroidViewAnimations)
 
@@ -45,14 +45,11 @@ public class SplashActivity extends AwesomeSplash{
     public void animationsFinished() {
 
         final Activity activity = this;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        new Handler().postDelayed(() -> {
 
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(intent);
-                activity.finish();
-            }
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            startActivity(intent);
+            activity.finish();
         }, 3000);
     }
 }

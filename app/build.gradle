@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         applicationId "com.mophsic.drippple"
         minSdkVersion 19
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -16,9 +17,6 @@ android {
         buildConfigField "String", "DRIBBBLE_CLIENT_SECRET", "\"${dirbbble_client_secret}\""
         buildConfigField "String", "DRIBBBLE_ACCESS_TOKEN", "\"${dribbble_client_access_token}\""
 
-        jackOptions {
-            enabled true
-        }
     }
 
     buildTypes {
@@ -46,17 +44,15 @@ repositories {
     jcenter()
 }
 
-ext.supportVersion = "24.2.1"
+ext.supportVersion = "25.0.1"
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     compile "com.android.support:appcompat-v7:${supportVersion}"
     compile "com.android.support:design:${supportVersion}"
-
     testCompile 'junit:junit:4.12'
     // splash screen
     compile 'com.github.ViksaaSkool:AwesomeSplash:v1.0.0'
@@ -76,6 +72,6 @@ dependencies {
     // butter knife
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-
     compile project(':mvp')
+
 }

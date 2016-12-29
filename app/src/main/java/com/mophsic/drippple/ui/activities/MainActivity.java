@@ -1,14 +1,20 @@
 package com.mophsic.drippple.ui.activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import com.mophsic.drippple.R;
 import com.mophsic.drippple.data.DribbblePrefs;
+import com.orhanobut.logger.Logger;
+
+import butterknife.BindView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,8 +25,37 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // 点击FAB 跳转到登录页
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(view -> InnerBrowserActivity.toHere(this, DribbblePrefs.LOGIN_URL));
+
+        handleIntent(getIntent());
+    }
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+    /**
+     * Handle code from dribbble.
+     * @param intent intent
+     */
+    private void handleIntent(Intent intent) {
+        if (intent != null) {
+            String action  = intent.getAction();
+            if (Intent.ACTION_VIEW.equals(action)) {
+                Uri data = intent.getData();
+                if (data != null) {
+                    String code = data.getQueryParameter("code");
+                    Logger.d("code:" + code);
+                }
+            }
+        }
     }
 
     @Override
@@ -44,4 +79,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -2,6 +2,7 @@ package com.mophsic.drippple.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -69,6 +71,23 @@ public class InnerBrowserActivity extends AppCompatActivity {
         });
 
         mWebView.setWebViewClient(new WebViewClient(){
+
+            // 不在此页面加载 drippple://drippple-callback 的网址
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                Uri uri = request.getUrl();
+                if ("drippple".equals(uri.getScheme())) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(uri);
+                    startActivity(intent);
+                    return true;
+                } else {
+                    view.loadUrl(uri.toString());
+                    return true;
+                }
+            }
+
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
@@ -95,7 +114,6 @@ public class InnerBrowserActivity extends AppCompatActivity {
     }
 
     private void changeProgress(int progress){
-        Logger.d(progress);
         mProgressBar.setVisibility(View.VISIBLE);
         mProgressBar.setMax(100);
         mProgressBar.setProgress(progress);
