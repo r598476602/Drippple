@@ -47,7 +47,7 @@ public class SplashActivity extends AwesomeSplash{
         final Activity activity = this;
         new Handler().postDelayed(() -> {
 
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, LoggingActivity.class);
             startActivity(intent);
             activity.finish();
         }, 3000);

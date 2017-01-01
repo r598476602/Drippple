@@ -10,14 +10,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.mophsic.drippple.BuildConfig;
 import com.mophsic.drippple.R;
 import com.mophsic.drippple.data.DribbblePrefs;
+import com.mophsic.drippple.data.model.AccessToken;
+import com.mophsic.drippple.network.ApiManager;
 import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
+import rx.Observable;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Action2;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
-public class MainActivity extends AppCompatActivity {
+public class LoggingActivity extends AppCompatActivity {
 
+    private DribbblePrefs dribbblePrefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         // 点击FAB 跳转到登录页
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(view -> InnerBrowserActivity.toHere(this, DribbblePrefs.LOGIN_URL));
-
+        dribbblePrefs = DribbblePrefs.get(getApplicationContext());
         handleIntent(getIntent());
     }
 
@@ -52,7 +63,18 @@ public class MainActivity extends AppCompatActivity {
                 Uri data = intent.getData();
                 if (data != null) {
                     String code = data.getQueryParameter("code");
-                    Logger.d("code:" + code);
+                    Observable<AccessToken> tokenObservable = ApiManager
+                            .getInstance()
+                            .getDribbbleAuthApi()
+                            .requireToken(
+                                    BuildConfig.DRIBBBLE_CLIENT_ID,
+                                    BuildConfig.DRIBBBLE_CLIENT_SECRET,
+                                    code);
+                    tokenObservable
+                            .map(accessToken -> accessToken.access_token)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(dribbblePrefs::setToken);
                 }
             }
         }

@@ -44,7 +44,7 @@ repositories {
     jcenter()
 }
 
-ext.supportVersion = "25.0.1"
+ext.supportVersion = "25.1.0"
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -73,5 +73,12 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile project(':mvp')
-
+    // leak-canary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    // stetho
+    compile 'com.facebook.stetho:stetho:1.4.2'
+    compile 'com.facebook.stetho:stetho-okhttp3:1.4.2'
+    compile 'com.facebook.stetho:stetho-js-rhino:1.4.2'
 }
