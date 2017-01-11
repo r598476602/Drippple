@@ -21,6 +21,11 @@ public class Links implements Parcelable{
     public Links(Parcel in) {
     }
 
+    public Links(String web, String twitter) {
+        this.web = web;
+        this.twitter = twitter;
+    }
+
     public String getWeb() {
         return web;
     }

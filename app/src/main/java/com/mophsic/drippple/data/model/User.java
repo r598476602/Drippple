@@ -44,67 +44,35 @@ public class User implements Parcelable {
      * updated_at : 2014-02-22T17:10:33Z
      */
 
-    private final int id;
-    private final String name;
-    private final String username;
-    private final String html_url;
-    private final String avatar_url;
-    private final String bio;
-    private final String location;
-    private final Links links;
-    private final int buckets_count;
-    private final int comments_received_count;
-    private final int followers_count;
-    private final int followings_count;
-    private final int likes_count;
-    private final int likes_received_count;
-    private final int projects_count;
-    private final int rebounds_received_count;
-    private final int shots_count;
-    private final int teams_count;
-    private final boolean can_upload_shot;
-    private final String type;
-    private final boolean pro;
-    private final String buckets_url;
-    private final String followers_url;
-    private final String following_url;
-    private final String likes_url;
-    private final String shots_url;
-    private final String teams_url;
-    private final Date created_at;
-    private final Date updated_at;
-
-    private User(Builder builder) {
-        id = builder.id;
-        name = builder.name;
-        username = builder.username;
-        html_url = builder.html_url;
-        avatar_url = builder.avatar_url;
-        bio = builder.bio;
-        location = builder.location;
-        links = builder.links;
-        buckets_count = builder.buckets_count;
-        comments_received_count = builder.comments_received_count;
-        followers_count = builder.followers_count;
-        followings_count = builder.followings_count;
-        likes_count = builder.likes_count;
-        likes_received_count = builder.likes_received_count;
-        projects_count = builder.projects_count;
-        rebounds_received_count = builder.rebounds_received_count;
-        shots_count = builder.shots_count;
-        teams_count = builder.teams_count;
-        can_upload_shot = builder.can_upload_shot;
-        type = builder.type;
-        pro = builder.pro;
-        buckets_url = builder.buckets_url;
-        followers_url = builder.followers_url;
-        following_url = builder.following_url;
-        likes_url = builder.likes_url;
-        shots_url = builder.shots_url;
-        teams_url = builder.teams_url;
-        created_at = builder.created_at;
-        updated_at = builder.updated_at;
-    }
+    private int id;
+    private String name;
+    private String username;
+    private String html_url;
+    private String avatar_url;
+    private String bio;
+    private String location;
+    private Links links;
+    private int buckets_count;
+    private int comments_received_count;
+    private int followers_count;
+    private int followings_count;
+    private int likes_count;
+    private int likes_received_count;
+    private int projects_count;
+    private int rebounds_received_count;
+    private int shots_count;
+    private int teams_count;
+    private boolean can_upload_shot;
+    private String type;
+    private boolean pro;
+    private String buckets_url;
+    private String followers_url;
+    private String following_url;
+    private String likes_url;
+    private String shots_url;
+    private String teams_url;
+    private Date created_at;
+    private Date updated_at;
 
     protected User(Parcel in) {
         this.id = in.readInt();
@@ -140,120 +108,239 @@ public class User implements Parcelable {
         this.updated_at = tmpUpdate == -1 ? null : new Date(tmpUpdate);
     }
 
+    public User() {
+    }
+
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getUserName() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUsername() {
         return username;
     }
 
-    public String getHtmlUrl() {
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getHtml_url() {
         return html_url;
     }
 
-    public String getAvatarUrl() {
+    public void setHtml_url(String html_url) {
+        this.html_url = html_url;
+    }
+
+    public String getAvatar_url() {
         return avatar_url;
+    }
+
+    public void setAvatar_url(String avatar_url) {
+        this.avatar_url = avatar_url;
     }
 
     public String getBio() {
         return bio;
     }
 
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
     public String getLocation() {
         return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public Links getLinks() {
         return links;
     }
 
-    public int getBucketsCount() {
+    public void setLinks(Links links) {
+        this.links = links;
+    }
+
+    public int getBuckets_count() {
         return buckets_count;
     }
 
-    public int getCommentsReceivedCount() {
+    public void setBuckets_count(int buckets_count) {
+        this.buckets_count = buckets_count;
+    }
+
+    public int getComments_received_count() {
         return comments_received_count;
     }
 
-    public int getFollowersCount() {
+    public void setComments_received_count(int comments_received_count) {
+        this.comments_received_count = comments_received_count;
+    }
+
+    public int getFollowers_count() {
         return followers_count;
     }
 
-    public int getFollowingsCount() {
+    public void setFollowers_count(int followers_count) {
+        this.followers_count = followers_count;
+    }
+
+    public int getFollowings_count() {
         return followings_count;
     }
 
-    public int getLikesCount() {
+    public void setFollowings_count(int followings_count) {
+        this.followings_count = followings_count;
+    }
+
+    public int getLikes_count() {
         return likes_count;
     }
 
-    public int getLikesReceivedCount() {
+    public void setLikes_count(int likes_count) {
+        this.likes_count = likes_count;
+    }
+
+    public int getLikes_received_count() {
         return likes_received_count;
     }
 
-    public int getProjectsCount() {
+    public void setLikes_received_count(int likes_received_count) {
+        this.likes_received_count = likes_received_count;
+    }
+
+    public int getProjects_count() {
         return projects_count;
     }
 
-    public int getReboundsReceivedCount() {
+    public void setProjects_count(int projects_count) {
+        this.projects_count = projects_count;
+    }
+
+    public int getRebounds_received_count() {
         return rebounds_received_count;
     }
 
-    public int getShotsCount() {
+    public void setRebounds_received_count(int rebounds_received_count) {
+        this.rebounds_received_count = rebounds_received_count;
+    }
+
+    public int getShots_count() {
         return shots_count;
     }
 
-    public int getTeamsCount() {
+    public void setShots_count(int shots_count) {
+        this.shots_count = shots_count;
+    }
+
+    public int getTeams_count() {
         return teams_count;
     }
 
-    public boolean isCanUploadShot() {
+    public void setTeams_count(int teams_count) {
+        this.teams_count = teams_count;
+    }
+
+    public boolean isCan_upload_shot() {
         return can_upload_shot;
+    }
+
+    public void setCan_upload_shot(boolean can_upload_shot) {
+        this.can_upload_shot = can_upload_shot;
     }
 
     public String getType() {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public boolean isPro() {
         return pro;
     }
 
-    public String getBucketsUrl() {
+    public void setPro(boolean pro) {
+        this.pro = pro;
+    }
+
+    public String getBuckets_url() {
         return buckets_url;
     }
 
-    public String getFollowersUrl() {
+    public void setBuckets_url(String buckets_url) {
+        this.buckets_url = buckets_url;
+    }
+
+    public String getFollowers_url() {
         return followers_url;
     }
 
-    public String getFollowingUrl() {
+    public void setFollowers_url(String followers_url) {
+        this.followers_url = followers_url;
+    }
+
+    public String getFollowing_url() {
         return following_url;
     }
 
-    public String getLikesUrl() {
+    public void setFollowing_url(String following_url) {
+        this.following_url = following_url;
+    }
+
+    public String getLikes_url() {
         return likes_url;
     }
 
-    public String getShotsUrl() {
+    public void setLikes_url(String likes_url) {
+        this.likes_url = likes_url;
+    }
+
+    public String getShots_url() {
         return shots_url;
     }
 
-    public String getTeamsUrl() {
+    public void setShots_url(String shots_url) {
+        this.shots_url = shots_url;
+    }
+
+    public String getTeams_url() {
         return teams_url;
     }
 
-    public Date getCreatedAt() {
+    public void setTeams_url(String teams_url) {
+        this.teams_url = teams_url;
+    }
+
+    public Date getCreated_at() {
         return created_at;
     }
 
-    public Date getUpdatedAt() {
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
+    }
+
+    public Date getUpdated_at() {
         return updated_at;
+    }
+
+    public void setUpdated_at(Date updated_at) {
+        this.updated_at = updated_at;
     }
 
     @Override
@@ -306,187 +393,4 @@ public class User implements Parcelable {
         }
     };
 
-    public static final class Builder {
-        private int id;
-        private String name;
-        private String username;
-        private String html_url;
-        private String avatar_url;
-        private String bio;
-        private String location;
-        private Links links;
-        private int buckets_count;
-        private int comments_received_count;
-        private int followers_count;
-        private int followings_count;
-        private int likes_count;
-        private int likes_received_count;
-        private int projects_count;
-        private int rebounds_received_count;
-        private int shots_count;
-        private int teams_count;
-        private boolean can_upload_shot;
-        private String type;
-        private boolean pro;
-        private String buckets_url;
-        private String followers_url;
-        private String following_url;
-        private String likes_url;
-        private String shots_url;
-        private String teams_url;
-        private Date created_at;
-        private Date updated_at;
-
-        public Builder() {
-        }
-
-        public Builder id(int id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder username(String username) {
-            this.username = username;
-            return this;
-        }
-
-        public Builder html_url(String html_url) {
-            this.html_url = html_url;
-            return this;
-        }
-
-        public Builder avatar_url(String avatar_url) {
-            this.avatar_url = avatar_url;
-            return this;
-        }
-
-        public Builder bio(String bio) {
-            this.bio = bio;
-            return this;
-        }
-
-        public Builder location(String location) {
-            this.location = location;
-            return this;
-        }
-
-        public Builder links(Links links) {
-            this.links = links;
-            return this;
-        }
-
-        public Builder buckets_count(int buckets_count) {
-            this.buckets_count = buckets_count;
-            return this;
-        }
-
-        public Builder comments_received_count(int comments_received_count) {
-            this.comments_received_count = comments_received_count;
-            return this;
-        }
-
-        public Builder followers_count(int followers_count) {
-            this.followers_count = followers_count;
-            return this;
-        }
-
-        public Builder followings_count(int followings_count) {
-            this.followings_count = followings_count;
-            return this;
-        }
-
-        public Builder likes_count(int likes_count) {
-            this.likes_count = likes_count;
-            return this;
-        }
-
-        public Builder likes_received_count(int likes_received_count) {
-            this.likes_received_count = likes_received_count;
-            return this;
-        }
-
-        public Builder projects_count(int projects_count) {
-            this.projects_count = projects_count;
-            return this;
-        }
-
-        public Builder rebounds_received_count(int rebounds_received_count) {
-            this.rebounds_received_count = rebounds_received_count;
-            return this;
-        }
-
-        public Builder shots_count(int shots_count) {
-            this.shots_count = shots_count;
-            return this;
-        }
-
-        public Builder teams_count(int teams_count) {
-            this.teams_count = teams_count;
-            return this;
-        }
-
-        public Builder can_upload_shot(boolean can_upload_shot) {
-            this.can_upload_shot = can_upload_shot;
-            return this;
-        }
-
-        public Builder type(String type) {
-            this.type = type;
-            return this;
-        }
-
-        public Builder pro(boolean pro) {
-            this.pro = pro;
-            return this;
-        }
-
-        public Builder buckets_url(String buckets_url) {
-            this.buckets_url = buckets_url;
-            return this;
-        }
-
-        public Builder followers_url(String followers_url) {
-            this.followers_url = followers_url;
-            return this;
-        }
-
-        public Builder following_url(String following_url) {
-            this.following_url = following_url;
-            return this;
-        }
-
-        public Builder likes_url(String likes_url) {
-            this.likes_url = likes_url;
-            return this;
-        }
-
-        public Builder shots_url(String shots_url) {
-            this.shots_url = shots_url;
-            return this;
-        }
-
-        public Builder teams_url(String teams_url) {
-            this.teams_url = teams_url;
-            return this;
-        }
-
-        public Builder created_at(Date created_at) {
-            this.created_at = created_at;
-            return this;
-        }
-
-        public Builder updated_at(Date updated_at) {
-            this.updated_at = updated_at;
-            return this;
-        }
-
-        public User build() {
-            return new User(this);
-        }
-    }
 }

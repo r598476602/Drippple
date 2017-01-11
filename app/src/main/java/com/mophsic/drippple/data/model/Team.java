@@ -74,8 +74,79 @@ public class Team implements Parcelable {
     private String created_at;
     private String updated_at;
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-    public Team(Parcel in) {
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.username);
+        dest.writeString(this.html_url);
+        dest.writeString(this.avatar_url);
+        dest.writeString(this.bio);
+        dest.writeString(this.location);
+        dest.writeParcelable(this.links, flags);
+        dest.writeInt(this.buckets_count);
+        dest.writeInt(this.comments_received_count);
+        dest.writeInt(this.followers_count);
+        dest.writeInt(this.followings_count);
+        dest.writeInt(this.likes_count);
+        dest.writeInt(this.likes_received_count);
+        dest.writeInt(this.members_count);
+        dest.writeInt(this.projects_count);
+        dest.writeInt(this.rebounds_received_count);
+        dest.writeInt(this.shots_count);
+        dest.writeByte(this.can_upload_shot ? (byte) 1 : (byte) 0);
+        dest.writeString(this.type);
+        dest.writeByte(this.pro ? (byte) 1 : (byte) 0);
+        dest.writeString(this.buckets_url);
+        dest.writeString(this.followers_url);
+        dest.writeString(this.following_url);
+        dest.writeString(this.likes_url);
+        dest.writeString(this.members_url);
+        dest.writeString(this.shots_url);
+        dest.writeString(this.team_shots_url);
+        dest.writeString(this.created_at);
+        dest.writeString(this.updated_at);
+    }
+
+    public Team() {
+    }
+
+    protected Team(Parcel in) {
+        this.id = in.readInt();
+        this.name = in.readString();
+        this.username = in.readString();
+        this.html_url = in.readString();
+        this.avatar_url = in.readString();
+        this.bio = in.readString();
+        this.location = in.readString();
+        this.links = in.readParcelable(Links.class.getClassLoader());
+        this.buckets_count = in.readInt();
+        this.comments_received_count = in.readInt();
+        this.followers_count = in.readInt();
+        this.followings_count = in.readInt();
+        this.likes_count = in.readInt();
+        this.likes_received_count = in.readInt();
+        this.members_count = in.readInt();
+        this.projects_count = in.readInt();
+        this.rebounds_received_count = in.readInt();
+        this.shots_count = in.readInt();
+        this.can_upload_shot = in.readByte() != 0;
+        this.type = in.readString();
+        this.pro = in.readByte() != 0;
+        this.buckets_url = in.readString();
+        this.followers_url = in.readString();
+        this.following_url = in.readString();
+        this.likes_url = in.readString();
+        this.members_url = in.readString();
+        this.shots_url = in.readString();
+        this.team_shots_url = in.readString();
+        this.created_at = in.readString();
+        this.updated_at = in.readString();
     }
 
     public int getId() {
@@ -320,8 +391,8 @@ public class Team implements Parcelable {
 
     public static final Creator<Team> CREATOR = new Creator<Team>() {
         @Override
-        public Team createFromParcel(Parcel in) {
-            return new Team(in);
+        public Team createFromParcel(Parcel source) {
+            return new Team(source);
         }
 
         @Override
@@ -330,13 +401,5 @@ public class Team implements Parcelable {
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-    }
 }
 

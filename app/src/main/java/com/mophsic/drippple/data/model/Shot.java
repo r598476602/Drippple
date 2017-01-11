@@ -67,30 +67,70 @@ public class Shot implements Parcelable {
     private Team team;
     private List<String> tags;
 
-    protected Shot(Parcel in) {
-    }
-
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.title);
+        dest.writeString(this.description);
+        dest.writeInt(this.width);
+        dest.writeInt(this.height);
+        dest.writeParcelable(this.images, flags);
+        dest.writeInt(this.views_count);
+        dest.writeInt(this.likes_count);
+        dest.writeInt(this.comments_count);
+        dest.writeInt(this.attachments_count);
+        dest.writeInt(this.rebounds_count);
+        dest.writeInt(this.buckets_count);
+        dest.writeString(this.created_at);
+        dest.writeString(this.updated_at);
+        dest.writeString(this.html_url);
+        dest.writeString(this.attachments_url);
+        dest.writeString(this.buckets_url);
+        dest.writeString(this.comments_url);
+        dest.writeString(this.likes_url);
+        dest.writeString(this.projects_url);
+        dest.writeString(this.rebounds_url);
+        dest.writeByte(this.animated ? (byte) 1 : (byte) 0);
+        dest.writeParcelable(this.user, flags);
+        dest.writeParcelable(this.team, flags);
+        dest.writeStringList(this.tags);
     }
 
-    public static final Creator<Shot> CREATOR = new Creator<Shot>() {
-        @Override
-        public Shot createFromParcel(Parcel in) {
-            return new Shot(in);
-        }
+    protected Shot(Parcel in) {
+        this.id = in.readInt();
+        this.title = in.readString();
+        this.description = in.readString();
+        this.width = in.readInt();
+        this.height = in.readInt();
+        this.images = in.readParcelable(Images.class.getClassLoader());
+        this.views_count = in.readInt();
+        this.likes_count = in.readInt();
+        this.comments_count = in.readInt();
+        this.attachments_count = in.readInt();
+        this.rebounds_count = in.readInt();
+        this.buckets_count = in.readInt();
+        this.created_at = in.readString();
+        this.updated_at = in.readString();
+        this.html_url = in.readString();
+        this.attachments_url = in.readString();
+        this.buckets_url = in.readString();
+        this.comments_url = in.readString();
+        this.likes_url = in.readString();
+        this.projects_url = in.readString();
+        this.rebounds_url = in.readString();
+        this.animated = in.readByte() != 0;
+        this.user = in.readParcelable(User.class.getClassLoader());
+        this.team = in.readParcelable(Team.class.getClassLoader());
+        this.tags = in.createStringArrayList();
+    }
 
-        @Override
-        public Shot[] newArray(int size) {
-            return new Shot[size];
-        }
-    };
+    public Shot() {
+    }
 
     public int getId() {
         return id;
@@ -291,4 +331,17 @@ public class Shot implements Parcelable {
     public void setTags(List<String> tags) {
         this.tags = tags;
     }
+
+    public static final Creator<Shot> CREATOR = new Creator<Shot>() {
+        @Override
+        public Shot createFromParcel(Parcel source) {
+            return new Shot(source);
+        }
+
+        @Override
+        public Shot[] newArray(int size) {
+            return new Shot[size];
+        }
+    };
+
 }
