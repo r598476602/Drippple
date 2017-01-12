@@ -4,4 +4,12 @@
     <string name="username">用户名</string>
     <string name="login_dribbble">登陆dribbble</string>
     <string name="network_error">网络错误</string>
+
+    <!-- shortcuts -->
+    <string name="shortcut_short_label">最近shot</string>
+    <string name="shortcut_long_label">最近上传shot</string>
+    <string name="shortcut_disable_msg">shortcut不可用</string>
+
+    <string name="shortcut_person_short_label">我的</string>
+    <string name="shortcut_person_long_label">个人信息</string>
 </resources>
