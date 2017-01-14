@@ -12,4 +12,5 @@
 
     <string name="shortcut_person_short_label">我的</string>
     <string name="shortcut_person_long_label">个人信息</string>
+    <string name="title_activity_dribbble_shots">DribbbleShotsActivity</string>
 </resources>
