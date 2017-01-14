@@ -79,7 +79,7 @@ public class Shot implements Parcelable {
         dest.writeString(this.description);
         dest.writeInt(this.width);
         dest.writeInt(this.height);
-        dest.writeParcelable(this.images, flags);
+        dest.writeParcelable(this.images, 0);
         dest.writeInt(this.views_count);
         dest.writeInt(this.likes_count);
         dest.writeInt(this.comments_count);
@@ -107,7 +107,7 @@ public class Shot implements Parcelable {
         this.description = in.readString();
         this.width = in.readInt();
         this.height = in.readInt();
-        this.images = in.readParcelable(Images.class.getClassLoader());
+        this.images = in.readParcelable(Thread.currentThread().getContextClassLoader());
         this.views_count = in.readInt();
         this.likes_count = in.readInt();
         this.comments_count = in.readInt();
@@ -124,8 +124,8 @@ public class Shot implements Parcelable {
         this.projects_url = in.readString();
         this.rebounds_url = in.readString();
         this.animated = in.readByte() != 0;
-        this.user = in.readParcelable(User.class.getClassLoader());
-        this.team = in.readParcelable(Team.class.getClassLoader());
+        this.user = in.readParcelable(Thread.currentThread().getContextClassLoader());
+        this.team = in.readParcelable(Thread.currentThread().getContextClassLoader());
         this.tags = in.createStringArrayList();
     }
 

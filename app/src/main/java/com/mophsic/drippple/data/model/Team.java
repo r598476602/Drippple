@@ -88,7 +88,7 @@ public class Team implements Parcelable {
         dest.writeString(this.avatar_url);
         dest.writeString(this.bio);
         dest.writeString(this.location);
-        dest.writeParcelable(this.links, flags);
+        dest.writeParcelable(this.links, 0);
         dest.writeInt(this.buckets_count);
         dest.writeInt(this.comments_received_count);
         dest.writeInt(this.followers_count);
@@ -124,7 +124,7 @@ public class Team implements Parcelable {
         this.avatar_url = in.readString();
         this.bio = in.readString();
         this.location = in.readString();
-        this.links = in.readParcelable(Links.class.getClassLoader());
+        this.links = in.readParcelable(Thread.currentThread().getContextClassLoader());
         this.buckets_count = in.readInt();
         this.comments_received_count = in.readInt();
         this.followers_count = in.readInt();
